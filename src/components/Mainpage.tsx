@@ -48,27 +48,25 @@ export default function Mainpage({setIsAuth, isAuth}) {
 
   return (
     <>
-    <header>
-    <h1>Insert title</h1>
-  </header>
-  <input id='postInput' type='input' onChange={(e) => {
-    setPostContent(e.target.value)
-  }}/>
-  <button onClick={postImage}>post</button>
-  <section className='sidebar'>
-    <h2>welcome {name}</h2>
-    <button onClick={logOut}>logout</button>
-  </section>
-  <section>
-    {posts.map((current:any) => {
-      return (
-        <div className='postCard'>
-          <h1 className='title'>{current.username}</h1>
-          <h2>{current.content}</h2>
-        </div>
-      )
-    })}
-  </section>
+  <section className='feedCont'>
+    <div className='leftFeed'>
+      
+    </div>
+    <div className='centerFeed'>
+      {posts.map((current:any) => {
+        return (
+          <div key={current.id} className='postCard'>
+            <h1 className='title'>{current.username}</h1>
+            <h3 className='content'>{current.content}</h3>
+          </div>
+        )
+      })}
+    </div>
+    <div className='rightFeed'>
+      <h1>{name} is logged in!</h1>
+      <button>Post</button>
+    </div>
+    </section>
     </>
   )
 }

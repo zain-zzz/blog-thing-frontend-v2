@@ -106,50 +106,61 @@ input{
 }
 
 
-.cardAll{
-  padding: 10px;
-  border: 3px solid blanchedalmond;
-  display: flex;
-  flex-direction: column;
-}
-
-.sidebar{
-  display: flex;
-  flex-direction: row;
-  margin: 10px;
-  padding: 10px;
-  width: 24vw;
-  float: right;
-  background-color: #484A5D;
-  color: white;
-}
-
-.sidebar button{
-  padding: 10px;
-  cursor: pointer;
-  transition: 0.2s;
-  border: none;
-  outline: none;
-}
-
-.sidebar button:hover{
-  color: whitesmoke;
-  background-color: #585967;
-}
-
 .postCard{
-  border: 2px solid #404258;
+  border-bottom: 2px solid #404258;
   display: flex;
   flex-direction: column;
-  width: 70vw;
+  width: 60vw;
   padding: 10px;
-  margin: 10px;
+  margin: 15px;
 }
 
 .title{
   border-bottom: 2px solid plum;
+  width: fit-content;
 }
 
-#postInput{
-  background-color: red;
+.feedCont{
+  display: grid;
+  grid: auto / 1fr 2fr 1fr;
+  min-height: 100vh;
+  background-color: #7882A4;
+}
+
+.centerFeed{
+  margin: 10px;
+  border: 3px solid plum;
+  background-color: white;
+}
+
+.rightFeed{
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: whitesmoke;
+  margin: 10px;
+}
+
+.rightFeed button{
+  margin-top: 20px;
+  font-size: 1.3rem;
+  width: 70%;
+  height: 5%;
+  border-radius: 10px;
+  background-color: plum;
+  border: none;
+  color: whitesmoke;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.rightFeed button:hover{
+  background-color: #BF82BF;
+}
+
+.content{
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-weight: 300;
 }
