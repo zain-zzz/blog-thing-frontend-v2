@@ -1,0 +1,25 @@
+.popupCont{
+  background-color: rgba(0, 0, 0, 0.7);
+  position:fixed;
+  top: 0;
+  left: 0;
+  height: 90%;
+  width: 70%;
+  transform: translate(21%,5%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.popupText{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.popupText input{
+  background-color: whitesmoke;
+}

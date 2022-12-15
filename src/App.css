@@ -146,7 +146,7 @@ input{
   margin-top: 20px;
   font-size: 1.3rem;
   width: 70%;
-  height: 5%;
+  height: 60px;
   border-radius: 10px;
   background-color: plum;
   border: none;
@@ -163,4 +163,38 @@ input{
   padding-top: 5px;
   padding-bottom: 5px;
   font-weight: 300;
+}
+
+
+.leftFeed{
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: whitesmoke;
+  margin: 10px;
+}
+
+.leftFeed button{
+  background-color: transparent;
+  color: whitesmoke;
+  font-size: 1.3rem;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.leftFeed button:hover{
+  text-decoration: underline;
+}
+
+.leftFeed a{
+  margin-top: 10px;
+  text-decoration: none;
+  font-size: 1.3rem;
+  color: whitesmoke;
+}
+
+.leftFeed a:hover{
+  text-decoration: underline;
 }

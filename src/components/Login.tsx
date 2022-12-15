@@ -23,7 +23,7 @@ export default function Home() {
   return (
     <>
       <header>
-        <h1>Insert title</h1>
+        <h1>Blog thing v2</h1>
       </header>
       <main>
         <div className="card">
@@ -38,7 +38,7 @@ export default function Home() {
 
           <div className="inputField">
             <h4>Password</h4>
-            <input type="input" onChange={(e) => {
+            <input type="password" onChange={(e) => {
               setPassword(e.target.value)
             }}/>
           </div>
