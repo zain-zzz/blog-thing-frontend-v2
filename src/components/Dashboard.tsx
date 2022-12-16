@@ -1,7 +1,119 @@
-import React from 'react'
+import { onAuthStateChanged, signOut } from 'firebase/auth'
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router'
+import { auth } from '../firebaseconfig'
+import {NavLink} from 'react-router-dom';
+import Popup from './Popup.jsx';
 
-export default function Dashboard() {
-  return (
-    <div>Dashboard</div>
-  )
+export default function Dashboard({setIsAuth, isAuth}) {
+
+  const [posts, setposts] = useState([])
+  //const [username, setusername] = useState<string | null>()
+  const [popupOpen, setPopupOpen] = useState(false)
+  const [email, setEmail] = useState<string | null>()
+
+  useEffect(() => {
+    if (auth.currentUser) {
+      setEmail(auth.currentUser?.email)
+      setIsAuth(true)
+    } else {
+      navigate('/login')
+    }
+  })
+
+  const navigate = useNavigate()
+
+  function logOut() {
+    signOut(auth)
+    navigate('/login')
+  }
+
+
+  async function getUsername(email) {
+    const response = await fetch('http://localhost:3003/getUsername', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: email
+      })
+    })
+
+    // const data = await response.json()
+    // console.log(data)
+  }
+
+  // useEffect(()=>{
+  //   getUsername(email)
+  // })
+
+  async function fetchData() {
+    const response = await fetch('http://localhost:3003/getPostsByEmail/' + auth.currentUser?.email)
+    const data = await response.json()
+    setposts(data)
+  }
+  
+  useEffect(() => {
+    fetchData()
+  }, [posts])
+
+
+  //console.log(name)
+  
+  return (<>
+
+  <section className='feedCont'>
+    <div className='leftFeed'>
+
+    <NavLink to={'/'}>Feed</NavLink>
+    <h2>Dashboard</h2>
+    <button onClick={logOut}>Sign out</button>
+
+    </div>
+
+
+
+    <div className='centerFeed'>
+
+
+      <div className='profileDisplay'>
+
+        <div className='profilePicture'>
+          <img src="https://st3.depositphotos.com/6672868/13701/v/600/depositphotos_137014128-stock-illustration-user-profile-icon.jpg"/>
+        </div>
+        
+        <div className='profileInfo'>
+          <h2> Placeholder </h2>
+          <h4> {email} </h4>
+        </div>
+
+
+      </div>
+
+
+      <h1 className='titleSmall'>Posts</h1>
+
+      <div className='posts'>
+        {posts.map((current:any) => {
+          return (
+            <div key={current.id} className='postCard'>
+              <h1 className='title'>{current.username}</h1>
+              <h3 className='content'>{current.content}</h3>
+            </div>
+          )
+        })}
+      </div>
+
+
+    </div>
+    
+    <div className='rightFeed'>
+      <h1>test</h1>
+      {/* {popupOpen && <Popup name={name} setPopupOpen={setPopupOpen}/>}
+      <button onClick={() => setPopupOpen(true)}>Post</button> */}
+    </div>
+
+
+  </section>
+
+</>)
 }

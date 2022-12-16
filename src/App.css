@@ -198,3 +198,130 @@ input{
 .leftFeed a:hover{
   text-decoration: underline;
 }
+
+.profileDisplay {
+
+  display: grid;
+  grid: auto/0fr 1fr;
+  /* background-color: red; */
+  padding-left: 10px;
+  padding-top: 10px;
+
+}
+
+.profileDisplay img {
+  /* background-color: blue; */
+  display: left;
+  border-radius: 100%;
+  width: 128px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.profileInfo {
+  position: relative;
+}
+
+.profileInfo h2 {
+  margin: 0;
+  position:absolute;
+  top:50%;
+  transform: translate(0,-130%);
+  font-weight: 600;
+}
+.profileInfo h4 {
+  margin: 0;
+  position:absolute;
+  top:50%;
+  transform: translate(0,-40%);
+  font-weight: 300;
+}
+
+.centerFeed .titleSmall {
+
+  font-size: 2.0em;
+  padding-left: 10px;
+  padding-bottom: 0px;
+
+}
+
+@media only screen and (max-width: 768px) {
+  main{
+    background-color: #6B728E;
+    min-height: 90vh;
+    min-width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .card{
+    display: flex;
+    /* turn back to smokewhite when done */
+    background-color: navajowhite;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border-radius: 30px;
+    align-items: center;
+    height: 60vh;
+    width: 80%;
+    border: 1px solid #6B728E;
+    box-shadow: #404258 5px 5px, #484A5D 10px 10px, #505162 15px 15px, #585967
+    20px 20px, #6B728E 25px 25px;
+    transition: 0.3s;
+  }
+
+  .inputField{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 2px solid #454656;
+    position: relative;
+    margin: 0rem auto 1rem;
+  }
+
+  .feedCont{
+    display: grid;
+    grid: auto / 100vw;
+    min-height: 100vh;
+    background-color: #7882A4;
+  }
+  
+  .centerFeed{
+    margin: 0px;
+    border: 3px solid plum;
+    background-color: white;
+  }
+  
+  .postCard{
+    border-bottom: 2px solid #404258;
+    display:grid;
+    grid: auto / 1fr;
+    align-items: center;
+    /* flex-direction: column; */
+    width: 85vw;
+    padding: 10px;
+    margin: 10px;
+  }
+  
+  .title{
+    border-bottom: 2px solid plum;
+    border-left: 10px;
+    width: fit-content;
+  }
+
+  .leftFeed{
+    padding: 3vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: whitesmoke;
+    margin: 10px;
+  }
+  
+  .leftFeed *{
+    padding-left: 2.4vw;
+    padding-right: 2.4vw;
+  }
+
+}

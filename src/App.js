@@ -15,7 +15,7 @@ function App() {
       <Route path="/" element={<Mainpage setIsAuth={setIsAuth} isAuth={isAuth}/>}></Route>
       <Route path="/login" element={<Login />}></Route>
       <Route path="/signup" element={<Signup setIsAuth={setIsAuth}/>}></Route>
-      <Route path="/dashboard" element={<Dashboard/>}></Route>
+      <Route path="/dashboard" element={<Dashboard setIsAuth={setIsAuth} isAuth={isAuth}/>}></Route>
     </Routes>
   );
 }
