@@ -8,6 +8,7 @@ import Popup from './Popup.jsx';
 export default function Mainpage({setIsAuth, isAuth}) {
 
   const [posts, setposts] = useState([])
+  const [username, setusername] = useState<string | null>()
   const [popupOpen, setPopupOpen] = useState(false)
 
   async function fetchData() {
@@ -37,6 +38,26 @@ export default function Mainpage({setIsAuth, isAuth}) {
     navigate('/login')
   }
 
+  async function getUsername(email) {
+    fetch('http://localhost:3003/getUsername/' + email)
+    .then(res => res.text())
+    .then(text => {
+      //console.log(text)
+      setusername(text)
+    });
+  }
+
+  // useEffect( () => {
+  //   posts.forEach(post => {
+  //     getUsername(post.username)
+  //     // console.log(post.username)
+      
+  //   })
+  // },[])
+
+
+
+
   return (
     <>
   <section className='feedCont'>
@@ -47,9 +68,10 @@ export default function Mainpage({setIsAuth, isAuth}) {
     </div>
     <div className='centerFeed'>
       {posts.map((current:any) => {
+        //getUsername(current.username)
         return (
           <div key={current.id} className='postCard'>
-            <h1 className='title'>{current.username}</h1>
+            <h1 className='title'>{username}</h1>
             <h3 className='content'>{current.content}</h3>
           </div>
         )

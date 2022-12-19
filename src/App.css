@@ -235,12 +235,14 @@ input{
 .posts{
   min-height: 70vh;
   overflow: auto;
-  white-space: nowrap;
+  /* white-space: nowrap; */
 }
 
 .myPostsCont {
+  /* overflow: auto;
+  overflow-wrap: break-word; */
   display: inline-block;
-  width: 50%;
+  width: 100%;
   border: 1px solid plum;
   height: 100%;
   box-sizing: border-box;

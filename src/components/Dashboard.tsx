@@ -8,7 +8,7 @@ import Popup from './Popup.jsx';
 export default function Dashboard({setIsAuth, isAuth}) {
 
   const [posts, setposts] = useState([])
-  //const [username, setusername] = useState<string | null>()
+  const [username, setusername] = useState<string | null>()
   const [popupOpen, setPopupOpen] = useState(false)
   const [email, setEmail] = useState<string | null>()
 
@@ -28,24 +28,6 @@ export default function Dashboard({setIsAuth, isAuth}) {
     navigate('/login')
   }
 
-
-  async function getUsername(email) {
-    const response = await fetch('http://localhost:3003/getUsername', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        email: email
-      })
-    })
-
-    // const data = await response.json()
-    // console.log(data)
-  }
-
-  // useEffect(()=>{
-  //   getUsername(email)
-  // })
-
   async function fetchData() {
     const response = await fetch('http://localhost:3003/getPostsByEmail/' + auth.currentUser?.email)
     const data = await response.json()
@@ -56,10 +38,19 @@ export default function Dashboard({setIsAuth, isAuth}) {
     fetchData()
   }, [posts])
 
+  async function getUsername() {
+    fetch('http://localhost:3003/getUsername/' + auth.currentUser?.email)
+    .then(res => res.text())
+    .then(text => {
+      //console.log(text)
+      setusername(text)
+    });
+  }
 
-  //console.log(name)
-  
-  return (<>
+  getUsername()
+
+  return (
+  <>
 
   <section className='feedCont'>
     <div className='leftFeed'>
@@ -82,7 +73,7 @@ export default function Dashboard({setIsAuth, isAuth}) {
         </div>
         
         <div className='profileInfo'>
-          <h2> Username / Email </h2>
+          <h2> {username} </h2>
           <h4> {email} </h4>
         </div>
 
@@ -98,7 +89,7 @@ export default function Dashboard({setIsAuth, isAuth}) {
         <div className="myPostsCont">
 
             <div key={current.id} className='myPosts'>
-              <h1>{current.username}</h1>
+              <h1>{username}</h1>
               <h3>{current.content}</h3>
             </div>
 
@@ -111,7 +102,7 @@ export default function Dashboard({setIsAuth, isAuth}) {
     </div>
     
     <div className='rightFeed'>
-      <h1>{auth.currentUser?.email}</h1>
+      <h1>{username}</h1>
       {/* {popupOpen && <Popup name={name} setPopupOpen={setPopupOpen}/>}
       <button onClick={() => setPopupOpen(true)}>Post</button> */}
     </div>
