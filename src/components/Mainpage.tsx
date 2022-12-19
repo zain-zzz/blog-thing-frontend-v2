@@ -51,6 +51,7 @@ export default function Mainpage({setIsAuth, isAuth}) {
           <div key={current.id} className='postCard'>
             <h1 className='title'>{current.username}</h1>
             <h3 className='content'>{current.content}</h3>
+            {/* <h2>{current}</h2> */}
           </div>
         )
       })}
