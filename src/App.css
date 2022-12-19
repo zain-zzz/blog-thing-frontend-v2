@@ -106,15 +106,6 @@ input{
 }
 
 
-.postCard{
-  border-bottom: 2px solid #404258;
-  display: flex;
-  flex-direction: column;
-  width: 60vw;
-  padding: 10px;
-  margin: 15px;
-}
-
 .title{
   border-bottom: 2px solid plum;
   width: fit-content;
@@ -131,6 +122,17 @@ input{
   margin: 10px;
   border: 3px solid plum;
   background-color: white;
+  width: 60vw;
+}
+
+.dashboardCenterFeed{
+  margin: 10px;
+  border: 3px solid plum;
+  background-color: white;
+  width: 60vw;
+  display: grid;
+  grid: 1fr/1fr;
+  place-content: center;
 }
 
 .rightFeed{
@@ -200,49 +202,56 @@ input{
 }
 
 .profileDisplay {
-
   display: grid;
-  grid: auto/0fr 1fr;
-  /* background-color: red; */
-  padding-left: 10px;
-  padding-top: 10px;
-
+  grid: 1fr/1fr;
+  padding: 10px;
+  place-items: center;
 }
 
 .profileDisplay img {
   /* background-color: blue; */
-  display: left;
+  /* display: left; */
   border-radius: 100%;
   width: 128px;
-  padding-left: 10px;
-  padding-right: 10px;
+  /* padding-left: 10px;
+  padding-right: 10px; */
 }
 
-.profileInfo {
-  position: relative;
+.profileInfo{
+  text-align: center;
 }
 
 .profileInfo h2 {
-  margin: 0;
-  position:absolute;
-  top:50%;
-  transform: translate(0,-130%);
   font-weight: 600;
 }
 .profileInfo h4 {
-  margin: 0;
-  position:absolute;
-  top:50%;
-  transform: translate(0,-40%);
   font-weight: 300;
 }
 
-.centerFeed .titleSmall {
+.titleSmall{
+  text-align: center;
+}
 
-  font-size: 2.0em;
-  padding-left: 10px;
-  padding-bottom: 0px;
+.posts{
+  min-height: 70vh;
+  overflow: auto;
+  white-space: nowrap;
+}
 
+.myPostsCont {
+  display: inline-block;
+  width: 50%;
+  border: 1px solid plum;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.myPosts{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 @media only screen and (max-width: 768px) {
@@ -258,7 +267,7 @@ input{
   .card{
     display: flex;
     /* turn back to smokewhite when done */
-    background-color: navajowhite;
+    background-color: whitesmoke;
     flex-direction: column;
     justify-content: space-evenly;
     border-radius: 30px;

@@ -3,9 +3,8 @@
   position:fixed;
   top: 0;
   left: 0;
-  height: 90%;
-  width: 70%;
-  transform: translate(21%,5%);
+  height: 100%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;

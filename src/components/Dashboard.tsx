@@ -72,7 +72,7 @@ export default function Dashboard({setIsAuth, isAuth}) {
 
 
 
-    <div className='centerFeed'>
+    <div className='dashboardCenterFeed'>
 
 
       <div className='profileDisplay'>
@@ -82,7 +82,7 @@ export default function Dashboard({setIsAuth, isAuth}) {
         </div>
         
         <div className='profileInfo'>
-          <h2> Placeholder </h2>
+          <h2> Username / Email </h2>
           <h4> {email} </h4>
         </div>
 
@@ -90,15 +90,19 @@ export default function Dashboard({setIsAuth, isAuth}) {
       </div>
 
 
-      <h1 className='titleSmall'>Posts</h1>
+      <h1 className='titleSmall'>My Posts<span> (scroll right)</span></h1>
 
       <div className='posts'>
         {posts.map((current:any) => {
           return (
-            <div key={current.id} className='postCard'>
-              <h1 className='title'>{current.username}</h1>
-              <h3 className='content'>{current.content}</h3>
+        <div className="myPostsCont">
+
+            <div key={current.id} className='myPosts'>
+              <h1>{current.username}</h1>
+              <h3>{current.content}</h3>
             </div>
+
+        </div>
           )
         })}
       </div>
@@ -107,7 +111,7 @@ export default function Dashboard({setIsAuth, isAuth}) {
     </div>
     
     <div className='rightFeed'>
-      <h1>test</h1>
+      <h1>{auth.currentUser?.email}</h1>
       {/* {popupOpen && <Popup name={name} setPopupOpen={setPopupOpen}/>}
       <button onClick={() => setPopupOpen(true)}>Post</button> */}
     </div>
