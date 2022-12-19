@@ -8,7 +8,7 @@ import Popup from './Popup.jsx';
 export default function Dashboard({setIsAuth, isAuth}) {
 
   const [posts, setposts] = useState([])
-  //const [username, setusername] = useState<string | null>()
+  const [username, setusername] = useState<string | null>()
   const [popupOpen, setPopupOpen] = useState(false)
   const [email, setEmail] = useState<string | null>()
 
@@ -29,22 +29,14 @@ export default function Dashboard({setIsAuth, isAuth}) {
   }
 
 
-  async function getUsername(email) {
-    const response = await fetch('http://localhost:3003/getUsername', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        email: email
-      })
-    })
-
-    // const data = await response.json()
-    // console.log(data)
+  async function getUsername() {
+    fetch('http://localhost:3003/getUsername/' + auth.currentUser?.email)
+    .then(res => res.text())
+    .then(text => {
+      //console.log(text)
+      setusername(text)
+    });
   }
-
-  // useEffect(()=>{
-  //   getUsername(email)
-  // })
 
   async function fetchData() {
     const response = await fetch('http://localhost:3003/getPostsByEmail/' + auth.currentUser?.email)
@@ -56,8 +48,12 @@ export default function Dashboard({setIsAuth, isAuth}) {
     fetchData()
   }, [posts])
 
+  // useEffect(() => {
+  //   getUsername()
+  // }, [username])
 
-  //console.log(name)
+  getUsername()
+  //console.log(username)
   
   return (<>
 
@@ -82,7 +78,7 @@ export default function Dashboard({setIsAuth, isAuth}) {
         </div>
         
         <div className='profileInfo'>
-          <h2> Placeholder </h2>
+          <h2> {username} </h2>
           <h4> {email} </h4>
         </div>
 

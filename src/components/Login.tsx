@@ -14,6 +14,7 @@ export default function Home() {
     signInWithEmailAndPassword(auth, email, password)
     .then((user) => {
       console.log(user.user)
+      
       navigate('/')
     }).catch((error) => {
       console.log(error.code)
