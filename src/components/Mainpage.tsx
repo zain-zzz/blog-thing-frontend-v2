@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router'
 import { auth } from '../firebaseconfig'
 import {NavLink} from 'react-router-dom';
-// import Popup from './PostPopup.jsx';
+import PostPopup from './PostPopup.jsx';
 
 export default function Mainpage({setIsAuth, isAuth}) {
 
@@ -21,7 +21,7 @@ export default function Mainpage({setIsAuth, isAuth}) {
     fetch('http://localhost:3003/getUsername/' + auth.currentUser?.email)
     .then(res => res.text())
     .then(text => {
-      console.log(text)
+      //console.log(text)
       setusername(text)
     });
   }
@@ -30,7 +30,6 @@ export default function Mainpage({setIsAuth, isAuth}) {
     if (posts.length === 0) {
       fetchData()
       getUsername()
-      //console.log('twwt')
     }
   }, [posts])
 
@@ -78,8 +77,8 @@ export default function Mainpage({setIsAuth, isAuth}) {
     </div>
     <div className='rightFeed'>
       <h1>{username} is logged in!</h1>
-      {/* {popupOpen && <PostPopup name={name} setPopupOpen={setPopupOpen}/>} */}
-      {/* <button onClick={() => setPopupOpen(true)}>Post</button> */}
+      {popupOpen && <PostPopup name={name} setPopupOpen={setPopupOpen}/>}
+      <button onClick={() => setPopupOpen(true)}>Post</button>
     </div>
     </section>
     </>
