@@ -7,7 +7,7 @@ import {NavLink} from 'react-router-dom';
 
 export default function Dashboard({setIsAuth, isAuth}) {
 
-  const [posts, setposts] = useState<string | list>([])
+  const [posts, setposts] = useState([])
   const [username, setusername] = useState<string | null>('empty')
   const [popupOpen, setPopupOpen] = useState(false)
   const [email, setEmail] = useState<string | null>()
@@ -62,7 +62,7 @@ export default function Dashboard({setIsAuth, isAuth}) {
 
     <NavLink to={'/'}>Feed</NavLink>
     <h2>Dashboard</h2>
-    <button onClick={logOut}>Sign out</button>
+    <button onClick={logOut} id='signoutbtn'>Sign out</button>
 
     </div>
 
