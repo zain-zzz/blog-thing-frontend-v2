@@ -3,11 +3,12 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router'
 import { auth } from '../firebaseconfig'
 import {NavLink} from 'react-router-dom';
-import Popup from './Popup.jsx';
+// import Popup from './PostPopup.jsx';
 
 export default function Mainpage({setIsAuth, isAuth}) {
 
   const [posts, setposts] = useState([])
+  const [username, setusername] = useState<string | null>()
   const [popupOpen, setPopupOpen] = useState(false)
 
   async function fetchData() {
@@ -15,9 +16,22 @@ export default function Mainpage({setIsAuth, isAuth}) {
     const data = await response.json()
     setposts(data)
   }
-
+  
+  async function getUsername() {
+    fetch('http://localhost:3003/getUsername/' + auth.currentUser?.email)
+    .then(res => res.text())
+    .then(text => {
+      console.log(text)
+      setusername(text)
+    });
+  }
+  
   useEffect(() => {
-    fetchData()
+    if (posts.length === 0) {
+      fetchData()
+      getUsername()
+      //console.log('twwt')
+    }
   }, [posts])
 
   const [name, setName] = useState<string | null>()
@@ -32,10 +46,16 @@ export default function Mainpage({setIsAuth, isAuth}) {
     }
   })
 
+  
+
   function logOut() {
     signOut(auth)
     navigate('/login')
   }
+
+
+  // setInterval
+
 
   return (
     <>
@@ -47,19 +67,19 @@ export default function Mainpage({setIsAuth, isAuth}) {
     </div>
     <div className='centerFeed'>
       {posts.map((current:any) => {
+        //getUsername(current.username)
         return (
-          <div key={current.id} className='postCard'>
+          <div key={current.content} className='postCard'>
             <h1 className='title'>{current.username}</h1>
             <h3 className='content'>{current.content}</h3>
-            {/* <h2>{current}</h2> */}
           </div>
         )
       })}
     </div>
     <div className='rightFeed'>
-      <h1>{name} is logged in!</h1>
-      {popupOpen && <Popup name={name} setPopupOpen={setPopupOpen}/>}
-      <button onClick={() => setPopupOpen(true)}>Post</button>
+      <h1>{username} is logged in!</h1>
+      {/* {popupOpen && <PostPopup name={name} setPopupOpen={setPopupOpen}/>} */}
+      {/* <button onClick={() => setPopupOpen(true)}>Post</button> */}
     </div>
     </section>
     </>

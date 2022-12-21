@@ -235,24 +235,43 @@ input{
 .posts{
   min-height: 70vh;
   overflow: auto;
-  white-space: nowrap;
+  /* white-space: nowrap; */
 }
 
 .myPostsCont {
+  /* overflow: auto;
+  overflow-wrap: break-word; */
   display: inline-block;
-  width: 50%;
+  width: 100%;
   border: 1px solid plum;
   height: 100%;
   box-sizing: border-box;
 }
 
-.myPosts{
+/* .myPosts{
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
+} */
+
+/* .bigCont{
+  display: flex;
+  flex-direction: row;
+} */
+
+/* .individualCard{
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  height: 300px;
+  width: 100%;
+  background-color: red;
+  min-width: 100px;
+} */
+
+
 
 @media only screen and (max-width: 768px) {
   main{

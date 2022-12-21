@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import '../Popup.css'
 
-export default function Popup({name, setPopupOpen}) {
+export default function PostPopup({name, setPopupOpen}) {
   
   const [postContent, setPostContent] = useState('')
   

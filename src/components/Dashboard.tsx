@@ -3,12 +3,12 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router'
 import { auth } from '../firebaseconfig'
 import {NavLink} from 'react-router-dom';
-import Popup from './Popup.jsx';
+// import Popup from './Popup.jsx';
 
 export default function Dashboard({setIsAuth, isAuth}) {
 
-  const [posts, setposts] = useState([])
-  //const [username, setusername] = useState<string | null>()
+  const [posts, setposts] = useState<string | list>([])
+  const [username, setusername] = useState<string | null>('empty')
   const [popupOpen, setPopupOpen] = useState(false)
   const [email, setEmail] = useState<string | null>()
 
@@ -28,38 +28,34 @@ export default function Dashboard({setIsAuth, isAuth}) {
     navigate('/login')
   }
 
-
-  async function getUsername(email) {
-    const response = await fetch('http://localhost:3003/getUsername', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        email: email
-      })
-    })
-
-    // const data = await response.json()
-    // console.log(data)
-  }
-
-  // useEffect(()=>{
-  //   getUsername(email)
-  // })
-
   async function fetchData() {
     const response = await fetch('http://localhost:3003/getPostsByEmail/' + auth.currentUser?.email)
     const data = await response.json()
     setposts(data)
   }
   
+  async function getUsername() {
+    fetch('http://localhost:3003/getUsername/' + auth.currentUser?.email)
+    .then(res => res.text())
+    .then(text => {
+      console.log(text)
+      setusername(text)
+    });
+  }
+
   useEffect(() => {
-    fetchData()
+    if (posts.length === 0) {
+      fetchData()
+      getUsername()
+      console.log(posts)
+      console.log('twwt')
+    }
   }, [posts])
 
 
-  //console.log(name)
-  
-  return (<>
+
+  return (
+  <>
 
   <section className='feedCont'>
     <div className='leftFeed'>
@@ -82,7 +78,7 @@ export default function Dashboard({setIsAuth, isAuth}) {
         </div>
         
         <div className='profileInfo'>
-          <h2> Username / Email </h2>
+          <h2>  </h2>
           <h4> {email} </h4>
         </div>
 
@@ -92,28 +88,28 @@ export default function Dashboard({setIsAuth, isAuth}) {
 
       <h1 className='titleSmall'>My Posts<span> (scroll right)</span></h1>
 
-      <div className='posts'>
+      { <div className='posts'>
         {posts.map((current:any) => {
           return (
         <div className="myPostsCont">
 
             <div key={current.id} className='myPosts'>
-              <h1>{current.username}</h1>
+              <h1>Content</h1>
               <h3>{current.content}</h3>
             </div>
 
         </div>
           )
         })}
-      </div>
+      </div> }
+
+
 
 
     </div>
     
     <div className='rightFeed'>
-      <h1>{auth.currentUser?.email}</h1>
-      {/* {popupOpen && <Popup name={name} setPopupOpen={setPopupOpen}/>}
-      <button onClick={() => setPopupOpen(true)}>Post</button> */}
+      <h1>{username}</h1>
     </div>
 
 
@@ -121,3 +117,7 @@ export default function Dashboard({setIsAuth, isAuth}) {
 
 </>)
 }
+function typeOf(username: string | null | undefined) {
+  throw new Error('Function not implemented.');
+}
+
