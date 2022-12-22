@@ -14,7 +14,7 @@ export default function Mainpage({setIsAuth, isAuth}) {
   async function fetchData() {
     const response = await fetch('http://localhost:3003/posts')
     const data = await response.json()
-    setposts(data)
+    setposts(data.reverse())
   }
   
   async function getUsername() {
@@ -30,6 +30,12 @@ export default function Mainpage({setIsAuth, isAuth}) {
     if (posts.length === 0) {
       fetchData()
       getUsername()
+
+      setInterval(function () {
+        fetchData()
+      }, 10000);
+
+
     }
   }, [posts])
 
@@ -58,7 +64,38 @@ export default function Mainpage({setIsAuth, isAuth}) {
 
   return (
     <>
-  <section className='feedCont'>
+        <section className='feedContainer'>
+
+<section className='left'>
+  <h2>Feed</h2>
+  <NavLink to={'/dashboard'}>Dashboard</NavLink>
+  <button onClick={logOut}>Logout</button>
+  </section>
+
+
+<section className='middle'>
+  <div className="verticalPost">
+    {posts.map((current:any) => {
+      return(
+        <div className="postContainer">
+          <h1>{current.username}</h1>
+          <h3>{current.content}</h3>
+        </div>
+      )
+    })}
+  </div>
+</section>
+
+
+<section className='right'>
+<h1>{username} is logged in!</h1>
+      {popupOpen && <PostPopup name={name} setPopupOpen={setPopupOpen}/>}
+      <button onClick={() => setPopupOpen(true)}>Post</button>
+</section>
+
+
+</section>
+  {/* <section className='feedCont'>
     <div className='leftFeed'>
     <h2>Feed</h2>
     <NavLink to={'/dashboard'}>Dashboard</NavLink>
@@ -80,7 +117,7 @@ export default function Mainpage({setIsAuth, isAuth}) {
       {popupOpen && <PostPopup name={name} setPopupOpen={setPopupOpen}/>}
       <button onClick={() => setPopupOpen(true)}>Post</button>
     </div>
-    </section>
+    </section> */}
     </>
   )
 }

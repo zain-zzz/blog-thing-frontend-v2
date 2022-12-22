@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 import { auth } from "../firebaseconfig";
 import { NavLink } from "react-router-dom";
 import FileUpload from "./FileUpload.tsx";
+import ProfilePopup from './ProfilePopup.tsx';
 
 // import Popup from './Popup.jsx';
 
@@ -103,10 +104,8 @@ export default function Dashboard({ setIsAuth, isAuth }) {
         </div>
 
         <div className="rightFeed">
-          <div className="fileUploadContainer">
-            <i className="fileUploadForm"/> Upload a Profile Picture
-            <FileUpload />
-          </div>
+          {popupOpen && <ProfilePopup setPopupOpen={setPopupOpen}/>}
+          <button onClick={() => setPopupOpen(true)}>Change Profile</button>
         </div>
 
         

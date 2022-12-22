@@ -271,6 +271,104 @@ input{
   min-width: 100px;
 } */
 
+.verticalPost{
+  background-color: whitesmoke;
+  height: 100vh;
+  overflow-y: auto;
+  box-sizing: border-box;
+  padding: .5rem;
+}
+
+
+.postContainer{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border-radius: 16px;
+  padding: 1.6rem;
+  background-color: rgb(250, 249, 249);
+  /* border: 1px solid palegoldenrod; */
+  margin: 10px;
+  box-shadow: 0 -1.5rem 2rem rgba(0, 0, 0, 0.3);
+  transition: .3s;
+}
+
+.postContainer:first-child{
+  box-shadow: 0 -1.5rem 2rem rgba(0, 0, 0, 0.01);
+}
+
+.postContainer:hover{
+  transform: translateY(-.7rem);
+}
+
+.feedContainer{
+  display: grid;
+  grid: auto / 20vw 60vw 20vw;
+  max-height: 100vh;
+  background-color: #7882A4;
+}
+
+
+.feedContainer .left{
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: whitesmoke;
+  margin: 10px;
+}
+
+.left button{
+  background-color: transparent;
+  color: whitesmoke;
+  font-size: 1.3rem;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.left a:hover, button:hover{
+  text-decoration: underline;
+}
+
+.left a{
+  margin-top: 10px;
+  text-decoration: none;
+  font-size: 1.3rem;
+  color: whitesmoke;
+}
+
+
+
+.feedContainer .right{
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: whitesmoke;
+  margin: 10px;
+}
+
+.right button{
+  margin-top: 20px;
+  font-size: 1.3rem;
+  width: 70%;
+  height: 60px;
+  border-radius: 10px;
+  background-color: plum;
+  border: none;
+  color: whitesmoke;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.right button:hover{
+  background-color: #BF82BF;
+}
+
+#signoutbtn{
+  margin: 0;
+}
 
 
 @media only screen and (max-width: 768px) {

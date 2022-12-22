@@ -68,21 +68,10 @@ const FileUpload = () => {
 
   return (
     <Fragment>
-      <form onSubmit={onSubmit}>
-        <br />
-
-        <div>
-          <input
-            type="file"
-            className="custom-file-input"
-            onChange={onChange}
-          />
-        </div>
-
-        <br />
-
-        <input type="submit" value="upload" className="submit-button" />
-      </form>
+      <div className="fileUploadContainer">
+        <i className="fileUploadForm"/> Upload a Profile Picture
+        <FileUpload />
+      </div>
     </Fragment>
   );
 };
